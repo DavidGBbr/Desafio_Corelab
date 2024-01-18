@@ -1,11 +1,5 @@
 import { prismaClient } from "../prisma";
-
-interface TodoRequest {
-  title: string;
-  completed: boolean;
-  color?: string;
-  favorite: boolean;
-}
+import { TodoRequest } from "../types/todo";
 
 export class CreateTodoService {
   async execute({ title, completed, color, favorite }: TodoRequest) {
