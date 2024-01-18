@@ -15,15 +15,7 @@ model Todo {
   title     String
   completed Boolean   @default(false)
   color     String?
-  favorites Favorite[]
+  favorite Boolean   @default(false)
 
   @@map("todos")
-}
-
-model Favorite {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  todoId String @db.ObjectId
-  todo   Todo   @relation(fields: [todoId], references: [id])
-
-  @@map("favorites")
 }
