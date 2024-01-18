@@ -13,7 +13,7 @@ const Header = () => {
       <div className="flex items-center w-full md:w-1/2">
         <Image src={LogoImg} alt="Image Logo" priority />
         <p className="ml-2 mr-6 text-m text-[#455A64]">CoreNotes</p>
-        <div className="border-2 border-slate-200 flex items-center w-full">
+        <div className="border-2 border-slate-200 flex items-center w-full shadow-3xl">
           <input
             type="text"
             placeholder="Pesquisar notas"

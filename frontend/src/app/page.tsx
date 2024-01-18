@@ -1,5 +1,13 @@
-import Image from "next/image";
+import CreateNote from "@/components/createNote";
+import Header from "@/components/header";
 
 export default function Home() {
-  return <></>;
+  return (
+    <>
+      <Header />
+      <main className="w-4/5 mx-auto my-6">
+        <CreateNote />
+      </main>
+    </>
+  );
 }
