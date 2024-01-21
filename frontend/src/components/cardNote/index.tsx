@@ -6,6 +6,7 @@ import ColorFillImg from "../../../public/images/color_fill.svg";
 import CloseImg from "../../../public/images/close.svg";
 import Image from "next/image";
 import { TodoInterface } from "@/types/Todo";
+import { useTodo } from "@/context/TodoContext";
 
 const CardNote = ({
   id,
@@ -15,9 +16,11 @@ const CardNote = ({
   color,
   favorite,
 }: TodoInterface) => {
+  const { deleteTodo } = useTodo();
+
   return (
     <div
-      className={`w-full mx-auto h-[400px] shadow-3xl border-[1px] border-[#D9D9D9] rounded-3xl bg-[${color}] flex flex-col justify-between`}
+      className={`w-full mx-auto h-[400px] shadow-3xl border-[1px] border-[#D9D9D9] rounded-3xl bg-white bg-[${color}] flex flex-col justify-between`}
     >
       <div>
         <div className="flex items-center justify-between border-b-[1px] px-5 py-3">
@@ -49,6 +52,9 @@ const CardNote = ({
           />
         </div>
         <Image
+          onClick={() => {
+            if (id) deleteTodo(id);
+          }}
           src={CloseImg}
           alt="Image Logo"
           priority

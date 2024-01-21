@@ -7,7 +7,7 @@ type IUiContext = {
   todos: TodoInterface[] | [];
   createTodo: (newTodo: TodoInterface) => void;
   readTodos: () => void;
-  updateTodo: (id: string, updatedTodo: TodoInterface) => void;
+  updateTodo: (updatedTodo: TodoInterface) => void;
   deleteTodo: (id: string) => void;
 };
 
@@ -32,10 +32,10 @@ export const TodoContextProvider = ({ children }: PropsWithChildren) => {
     setTodos(response.data);
   };
 
-  const updateTodo = async (id: string, updatedTodo: TodoInterface) => {
-    const response = await api.put("/todos/", updatedTodo);
+  const updateTodo = async (updatedTodo: TodoInterface) => {
+    const response = await api.put("/todo", updatedTodo);
     const updatedTodos = todos.map((todo) =>
-      todo.id === id ? response.data : todo
+      todo.id === updatedTodo.id ? response.data : todo
     );
     setTodos(updatedTodos);
   };

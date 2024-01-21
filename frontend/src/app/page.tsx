@@ -3,9 +3,7 @@ import CardNote from "@/components/cardNote";
 import FormNote from "@/components/formNote";
 import Header from "@/components/header";
 import { useTodo } from "@/context/TodoContext";
-import { api } from "@/services/api";
-import { TodoInterface } from "@/types/Todo";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export default function Home() {
   const { todos, readTodos } = useTodo();
