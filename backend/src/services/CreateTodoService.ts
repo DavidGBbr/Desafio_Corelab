@@ -9,13 +9,13 @@ export class CreateTodoService {
     color,
     favorite,
   }: TodoRequest) {
-    const newTodo = prismaClient.todo.create({
+    const newTodo = await prismaClient.todo.create({
       data: {
         title,
         description,
-        completed,
+        completed: completed === "true" ? true : false,
         color,
-        favorite,
+        favorite: favorite === "true" ? true : false,
       },
     });
 
