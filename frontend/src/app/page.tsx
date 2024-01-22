@@ -12,6 +12,10 @@ export default function Home() {
     readTodos();
   }, []);
 
+  useEffect(() => {
+    readTodos();
+  }, [todos]);
+
   return (
     <>
       <Header />

@@ -17,9 +17,9 @@ export class UpdateTodoService {
       data: {
         title,
         description,
-        completed: Boolean(completed),
+        completed: completed === "true" ? true : false,
         color,
-        favorite: Boolean(favorite),
+        favorite: favorite === "true" ? true : false,
       },
     });
 

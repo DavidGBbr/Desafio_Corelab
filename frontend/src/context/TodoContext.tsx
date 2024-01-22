@@ -1,6 +1,7 @@
 "use client";
 import { api } from "@/services/api";
 import { TodoInterface } from "@/types/Todo";
+import { sortByFavorite } from "@/utils/sortTodos";
 import { PropsWithChildren, createContext, useContext, useState } from "react";
 
 type IUiContext = {
@@ -29,7 +30,8 @@ export const TodoContextProvider = ({ children }: PropsWithChildren) => {
 
   const readTodos = async () => {
     const response = await api.get("/todos");
-    setTodos(response.data);
+    const sortedTodos = await sortByFavorite(response.data);
+    setTodos(sortedTodos);
   };
 
   const updateTodo = async (updatedTodo: TodoInterface) => {

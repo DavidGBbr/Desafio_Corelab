@@ -16,7 +16,20 @@ const CardNote = ({
   color,
   favorite,
 }: TodoInterface) => {
-  const { deleteTodo } = useTodo();
+  const { deleteTodo, updateTodo } = useTodo();
+
+  const toggleFavorite = (favorite: boolean) => {
+    const updatedTodo = {
+      id,
+      title,
+      description,
+      completed,
+      color,
+      favorite: !favorite,
+    };
+
+    updateTodo(updatedTodo);
+  };
 
   return (
     <div
@@ -26,6 +39,7 @@ const CardNote = ({
         <div className="flex items-center justify-between border-b-[1px] px-5 py-3">
           <h1 className="font-bold text-[#4F4F4D]">{title}</h1>
           <Image
+            onClick={() => toggleFavorite(favorite)}
             src={favorite ? MarkedStarImg : StarImg}
             alt="Image Logo"
             priority
