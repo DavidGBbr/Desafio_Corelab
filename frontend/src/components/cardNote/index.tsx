@@ -40,10 +40,6 @@ const CardNote = ({
     updateTodo(updatedTodo);
   };
 
-  const changeColor = () => {
-    setPicker(!picker);
-  };
-
   const handleColorSelect = (color: string) => {
     setSelectedColor(color);
   };
@@ -72,6 +68,25 @@ const CardNote = ({
   useEffect(() => {
     inputTitleRef.current?.focus();
   }, [disabled]);
+
+  useEffect(() => {
+    const handleChangeColor = () => {
+      if (selectedColor) {
+        const updatedTodo = {
+          id,
+          title,
+          description,
+          completed,
+          color: selectedColor,
+          favorite,
+        };
+
+        updateTodo(updatedTodo);
+      }
+    };
+    handleChangeColor();
+    setPicker(!picker);
+  }, [selectedColor]);
 
   return (
     <>
@@ -121,7 +136,7 @@ const CardNote = ({
             </span>
             <span
               className="cursor-pointer hover:bg-[#FFE3B3] p-1 duration-150 rounded-full flex justify-center items-center ml-1"
-              onClick={() => changeColor()}
+              onClick={() => setPicker(!picker)}
             >
               <Image src={ColorFillImg} alt="Image color fill" priority />
             </span>
@@ -137,7 +152,6 @@ const CardNote = ({
         {picker && (
           <>
             <ColorPicker onSelectColor={handleColorSelect} />
-            <p>A cor selecionada é: {selectedColor}</p>
           </>
         )}
       </div>

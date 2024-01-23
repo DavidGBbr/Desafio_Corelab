@@ -27,7 +27,7 @@ const ColorPicker = ({ onSelectColor }: ColorPickerProps) => {
   };
 
   return (
-    <div className="bg-white p-5 absolute bottom-[-100px] flex flex-wrap gap-1">
+    <div className="bg-white p-1 absolute bottom-[-30px] flex flex-wrap gap-1">
       {colors.map((color) => (
         <span
           key={color}
