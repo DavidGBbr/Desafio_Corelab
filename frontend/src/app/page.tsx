@@ -16,23 +16,41 @@ export default function Home() {
     readTodos();
   }, [todos]);
 
+  const favoriteNotes = todos?.filter((note) => note.favorite);
+  const commonNotes = todos?.filter((note) => !note.favorite);
+
   return (
     <>
       <Header />
       <FormNote />
-      <main className="w-4/5 mx-auto my-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-        {todos?.map((todo) => (
+      <h2 className="w-4/5 mx-auto pl-4 mt-6 text-[#464646]">Favoritas</h2>
+      <section className="w-4/5 mx-auto my-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        {favoriteNotes?.map((note) => (
           <CardNote
-            key={todo.id}
-            id={todo.id}
-            title={todo.title}
-            description={todo.description}
-            completed={todo.completed}
-            color={todo.color}
-            favorite={todo.favorite}
+            key={note.id}
+            id={note.id}
+            title={note.title}
+            description={note.description}
+            completed={note.completed}
+            color={note.color}
+            favorite={note.favorite}
           />
         ))}
-      </main>
+      </section>
+      <h2 className="w-4/5 mx-auto pl-4 text-[#464646]">Outras</h2>
+      <section className="w-4/5 mx-auto my-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        {commonNotes?.map((note) => (
+          <CardNote
+            key={note.id}
+            id={note.id}
+            title={note.title}
+            description={note.description}
+            completed={note.completed}
+            color={note.color}
+            favorite={note.favorite}
+          />
+        ))}
+      </section>
     </>
   );
 }
