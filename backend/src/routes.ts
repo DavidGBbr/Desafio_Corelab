@@ -12,5 +12,5 @@ router.get("/ping", (req: Request, res: Response) => {
 
 router.post("/todo", new CreateTodoController().handle);
 router.get("/todos", new GetTodosController().handle);
-router.put("/todo", new UpdateTodoController().handle);
+router.patch("/todo", new UpdateTodoController().handle);
 router.delete("/todo/:id", new DeleteTodoController().handle);

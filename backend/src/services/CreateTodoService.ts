@@ -15,7 +15,7 @@ export class CreateTodoService {
         description,
         completed: completed === "true" ? true : false,
         color,
-        favorite: favorite === "true" ? true : false,
+        favorite: favorite === "true-" ? true : false,
       },
     });
 

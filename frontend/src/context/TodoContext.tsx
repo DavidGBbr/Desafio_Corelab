@@ -2,10 +2,18 @@
 import { api } from "@/services/api";
 import { TodoInterface } from "@/types/Todo";
 import { sortByFavorite } from "@/utils/sortTodos";
-import { PropsWithChildren, createContext, useContext, useState } from "react";
+import {
+  Dispatch,
+  PropsWithChildren,
+  SetStateAction,
+  createContext,
+  useContext,
+  useState,
+} from "react";
 
 type IUiContext = {
   todos: TodoInterface[] | [];
+  setTodos: Dispatch<SetStateAction<TodoInterface[] | []>>;
   createTodo: (newTodo: TodoInterface) => void;
   readTodos: () => void;
   updateTodo: (updatedTodo: TodoInterface) => void;
@@ -35,7 +43,7 @@ export const TodoContextProvider = ({ children }: PropsWithChildren) => {
   };
 
   const updateTodo = async (updatedTodo: TodoInterface) => {
-    const response = await api.put("/todo", updatedTodo);
+    const response = await api.patch("/todo", updatedTodo);
     const updatedTodos = todos.map((todo) =>
       todo.id === updatedTodo.id ? response.data : todo
     );
@@ -52,6 +60,7 @@ export const TodoContextProvider = ({ children }: PropsWithChildren) => {
     <TodoContext.Provider
       value={{
         todos,
+        setTodos,
         createTodo,
         readTodos,
         updateTodo,

@@ -1,13 +1,12 @@
 "use client";
+import React from "react";
 import Image from "next/image";
 import LogoImg from "../../../public/images/logo.svg";
 import SearchImg from "../../../public/images/search.svg";
 import CloseImg from "../../../public/images/close.svg";
-import React, { useState } from "react";
+import { HeaderProps } from "@/types/Header";
 
-const Header = () => {
-  const [note, setNote] = useState("");
-
+const Header = ({ setSearch }: HeaderProps) => {
   return (
     <header className="bg-white flex justify-between items-center py-2 px-8">
       <div className="flex items-center w-full md:w-1/2">
@@ -18,8 +17,7 @@ const Header = () => {
             type="text"
             placeholder="Pesquisar notas"
             className="p-1 pl-3 w-full outline-none"
-            value={note}
-            onChange={(e) => setNote(e.target.value)}
+            onChange={(e) => setSearch(e.target.value)}
           />
           <Image
             src={SearchImg}
